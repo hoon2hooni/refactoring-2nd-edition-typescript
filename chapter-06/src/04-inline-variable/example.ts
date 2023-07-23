@@ -4,6 +4,5 @@ interface Order {
 }
 
 const isExtraFeeCharged = (anOrder: Order): boolean => {
-  let basePrice = anOrder.basePrice;
-  return basePrice > 1000;
+  return anOrder.basePrice > 1000;
 };
