@@ -9,12 +9,8 @@ type Customer = {
 function reportLines(aCustomer: Customer) {
   const lines: [string, string][] = [];
 
-  gatherCustomerData(lines, aCustomer);
+  lines.push(['name', aCustomer.name]);
+  lines.push(['location', aCustomer.location]);
 
   return lines;
-}
-
-function gatherCustomerData(out: [string, string][], aCustomer: Customer) {
-  out.push(['name', aCustomer.name]);
-  out.push(['location', aCustomer.location]);
 }
