@@ -1,3 +1,11 @@
+type Station = {
+  name: string;
+  readings: {
+    temp: number;
+    time: string;
+  }[];
+};
+
 const station = {
   name: 'ZB1',
   readings: [
@@ -9,12 +17,10 @@ const station = {
   ],
 };
 
-function readingsOutsideRange(statins, min, max) {
+export function readingsOutsideRange(
+  station: Station,
+  min: number,
+  max: number,
+) {
   return station.readings.filter((r) => r.temp < min || r.temp > max);
 }
-
-alerts = readingsOutsideRange(
-  station,
-  operatingPlan.temperatureFloor,
-  operatingPlan.temperatureCeiling,
-);
