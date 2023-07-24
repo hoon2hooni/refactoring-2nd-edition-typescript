@@ -1,6 +1,6 @@
 /**
- * 리팩토링 전
+ * 리팩토링 후
  */
-function circum(radius: number) {
+function circumference(radius: number) {
   return 2 * Math.PI * radius;
 }
