@@ -1,15 +1,20 @@
 /**
- * 리팩토링 전
+ * 리팩토링 후
  */
-declare function setTitle(arg: string): void;
 
-let tpHd = 'untitled';
+let _tittle: string = 'untitled';
 let result: string = '';
 
-result += `<h1>${tpHd}</h1>`;
+result += `<h1>${title}</h1>`;
 
 const obj = {
   articleTitle: 'untitled',
 };
 
-setTitle(obj['articleTitle']);
+function title() {
+  return _tittle;
+}
+
+function setTitle(arg: string) {
+  _tittle = arg;
+}

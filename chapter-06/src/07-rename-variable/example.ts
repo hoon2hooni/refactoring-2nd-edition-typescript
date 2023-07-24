@@ -4,4 +4,4 @@
 export let height = 10;
 export let innerWidth = 50;
 
-let a = height * innerWidth;
+let area = height * innerWidth;
