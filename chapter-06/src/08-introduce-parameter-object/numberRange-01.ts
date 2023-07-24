@@ -6,7 +6,7 @@ type Station = {
   }[];
 };
 
-const station = {
+export const station = {
   name: 'ZB1',
   readings: [
     { temp: 47, time: '2016-11-10 09:10' },
@@ -22,5 +22,22 @@ export function readingsOutsideRange(
   min: number,
   max: number,
 ) {
-  return station.readings.filter((r) => r.temp < min || r.temp > max);
+  const range = new NumberRange(min, max);
+  return station.readings.filter((r) => !range.contains(r.temp));
+}
+
+class NumberRange {
+  #data: { min: number; max: number };
+  constructor(min: number, max: number) {
+    this.#data = { min, max };
+  }
+  get min() {
+    return this.#data.min;
+  }
+  get max() {
+    return this.#data.max;
+  }
+  contains(arg: number) {
+    return arg >= this.min && arg <= this.max;
+  }
 }
