@@ -1,14 +1,9 @@
 declare function acquireReading(): Reading;
 declare function baseRate(month: number, year: number): number;
-
-interface Reading {
-  month: number;
-  year: number;
-  quantity: number;
-}
+import { Reading } from './Reading';
 
 // Assuming these are functions with appropriate types defined elsewhere
 
-export const aReading: Reading = acquireReading();
-export const baseCharge: number =
-  baseRate(aReading.month, aReading.year) * aReading.quantity;
+const rawReading = acquireReading();
+const aReading: Reading = new Reading(rawReading);
+const baseCharge: number = aReading.baseCharge;

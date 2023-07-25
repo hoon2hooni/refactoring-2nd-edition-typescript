@@ -32,4 +32,11 @@ export class Reading {
   get year() {
     return this.#year;
   }
+
+  get baseCharge() {
+    return baseRate(this.month, this.year) * this.quantity;
+  }
+  get taxableCharge() {
+    return Math.max(0, this.baseCharge - taxThreshold(this.year));
+  }
 }
