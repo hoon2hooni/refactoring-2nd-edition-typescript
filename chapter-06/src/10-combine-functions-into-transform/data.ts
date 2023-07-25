@@ -1,4 +1,4 @@
-const reading = {
+export const reading = {
   customer: 'ivan',
   quantity: 10,
   month: 5,
