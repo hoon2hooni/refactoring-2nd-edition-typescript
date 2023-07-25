@@ -1,10 +1,10 @@
-interface Product {
+export interface Product {
   basePrice: number;
   discountThreshold: number;
   discountRate: number;
 }
 
-interface ShippingMethod {
+export interface ShippingMethod {
   discountThreshold: number;
   discountedFee: number;
   feePerCase: number;
@@ -15,17 +15,28 @@ export function priceOrder(
   quantity: number,
   shippingMethod: ShippingMethod,
 ): number {
+  const priceData = calculatePriceData(product, quantity);
+  return applyShipping(priceData, shippingMethod);
+}
+
+function calculatePriceData(product: Product, quantity: number) {
   const basePrice: number = product.basePrice * quantity;
   const discount: number =
     Math.max(quantity - product.discountThreshold, 0) *
     product.basePrice *
     product.discountRate;
-  const shippingPerCase: number =
-    basePrice > shippingMethod.discountThreshold
+  return { basePrice, quantity, discount };
+}
+
+function applyShipping(
+  priceData: { basePrice: number; quantity: number; discount: number },
+  shippingMethod: ShippingMethod,
+) {
+  const shippingPerCase =
+    priceData.basePrice > shippingMethod.discountThreshold
       ? shippingMethod.discountedFee
       : shippingMethod.feePerCase;
-  const shippingCost: number = quantity * shippingPerCase;
-  const price: number = basePrice - discount + shippingCost;
 
-  return price;
+  const shippingCost = priceData.quantity * shippingPerCase;
+  return priceData.basePrice - priceData.discount + shippingCost;
 }
