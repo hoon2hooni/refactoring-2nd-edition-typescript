@@ -1,5 +1,6 @@
 declare function acquireReading(): Reading;
 declare function baseRate(month: number, year: number): number;
+import { enrichReading } from './enrichReading';
 
 interface Reading {
   month: number;
@@ -9,6 +10,6 @@ interface Reading {
 
 // Assuming these are functions with appropriate types defined elsewhere
 
-export const aReading: Reading = acquireReading();
-export const baseCharge: number =
-  baseRate(aReading.month, aReading.year) * aReading.quantity;
+const rawReading = acquireReading();
+const aReading = enrichReading(rawReading);
+const baseCharge = aReading.baseCharge;

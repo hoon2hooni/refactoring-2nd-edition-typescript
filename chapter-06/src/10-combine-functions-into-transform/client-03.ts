@@ -4,6 +4,7 @@
 
 declare function acquireReading(): Reading;
 declare function baseRate(month: number, year: number): number;
+import { enrichReading } from './enrichReading';
 
 interface Reading {
   month: number;
@@ -11,8 +12,9 @@ interface Reading {
   quantity: number;
 }
 
-const aReading = acquireReading();
-const basicChargeAmount = calculateBaseCharge(aReading);
+const rawReading = acquireReading();
+const aReading = enrichReading(rawReading);
+const basicChargeAmount = aReading.baseCharge;
 
 export function calculateBaseCharge(aReading: Reading) {
   return baseRate(aReading.month, aReading.year) * aReading.quantity;
