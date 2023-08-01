@@ -1,6 +1,11 @@
 import { Course } from './Course';
-declare function readBasicCourseNames(filename: string): Course[];
+import { Person } from './Person-01';
+
+declare function readBasicCourseNames(filename: string): string[];
 
 const basicCourseNames = readBasicCourseNames('basicCourses.txt');
-const aPerson: { courses: Course[] } = { courses: [] };
-aPerson.courses = basicCourseNames.map((c) => new Course(c.name, false));
+const aPerson = new Person('Martin Fowler');
+
+for (const name of readBasicCourseNames('additionalCourses.txt')) {
+  aPerson.addCourse(new Course(name, true));
+}

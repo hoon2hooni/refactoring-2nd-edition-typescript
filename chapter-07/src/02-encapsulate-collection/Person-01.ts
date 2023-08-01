@@ -1,9 +1,6 @@
-type Course = {
-  name: string;
-  isAdvanced: boolean;
-};
+import { Course } from './Course';
 
-class Person {
+export class Person {
   private _name: string;
   private _courses: Course[];
 
@@ -17,10 +14,25 @@ class Person {
   }
 
   get courses(): Course[] {
-    return this._courses;
+    return this._courses.slice();
   }
 
   set courses(aList: Course[]) {
-    this._courses = aList;
+    this._courses = aList.slice();
+  }
+
+  addCourse(aCourse: Course) {
+    this._courses.push(aCourse);
+  }
+
+  removeCourse(
+    aCourse: Course,
+    fnIfAbsent = () => {
+      throw new RangeError('강좌가 없습니다.');
+    },
+  ) {
+    const index = this._courses.indexOf(aCourse);
+    if (index === -1) fnIfAbsent();
+    this._courses.splice(index, 1);
   }
 }
