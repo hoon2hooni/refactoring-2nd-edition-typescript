@@ -1,5 +1,5 @@
 import customerData from './data';
-
+import _ from 'lodash';
 // 중첩된 레코드 캡슐화하기
 
 /**
@@ -14,21 +14,41 @@ import customerData from './data';
 
 // Define types/interfaces for customerData and its properties
 
-interface UsageComparisonResult {
-  lateAmount: number;
-  change: number;
-}
-
-function compareUsage(
-  customerID: string,
-  laterYear: number,
-  month: number,
-): UsageComparisonResult {
-  const later: number = customerData[customerID].usages[laterYear][month];
-  const earlier: number = customerData[customerID].usages[laterYear - 1][month];
+function compareUsage(customerID: string, laterYear: number, month: number) {
+  const later: number = getCustomerData().rawData[customerID].usages[laterYear][
+    month
+  ];
+  const earlier: number = getCustomerData().rawData[customerID].usages[
+    laterYear - 1
+  ][month];
 
   return {
     lateAmount: later,
     change: later - earlier,
   };
 }
+
+type CustomerData = typeof customerData;
+
+class Customer {
+  private _data: CustomerData;
+
+  constructor(data: CustomerData) {
+    this._data = data;
+  }
+
+  get rawData() {
+    return _.cloneDeep(this._data);
+  }
+
+  usage(customerID: string, laterYear: number, month: number) {
+    return this._data[customerID].usages[laterYear][month];
+  }
+}
+let aCustomerData = new Customer(customerData);
+
+const getCustomerData = () => aCustomerData;
+const getRawDataOfCustomer = () => aCustomerData.rawData;
+const setRawDataOfCustomer = (arg: CustomerData) => {
+  aCustomerData = new Customer(arg);
+};
