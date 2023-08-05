@@ -1,15 +1,20 @@
-class Order {
-  private _priority: string;
+import { Priority } from './Priority-01';
+export class Order {
+  #priority: Priority;
 
-  constructor(data: { priority: string }) {
-    this._priority = data.priority;
+  constructor(data: { priority: Priority }) {
+    this.#priority = data.priority;
   }
 
-  get priority() {
-    return this._priority;
+  get priority(): Priority {
+    return this.#priority;
+  }
+
+  get priorityString() {
+    return this.#priority.toString();
   }
 
   set priority(aString: string) {
-    this._priority = aString;
+    this.#priority = new Priority(aString);
   }
 }
