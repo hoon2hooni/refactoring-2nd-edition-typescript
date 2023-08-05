@@ -1,5 +1,7 @@
 class Order {
-  constructor(data) {
+  private _priority: string;
+
+  constructor(data: { priority: string }) {
     this._priority = data.priority;
   }
 
@@ -7,7 +9,7 @@ class Order {
     return this._priority;
   }
 
-  set priority(aString) {
+  set priority(aString: string) {
     this._priority = aString;
   }
 }
