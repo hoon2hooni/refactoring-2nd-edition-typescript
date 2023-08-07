@@ -29,9 +29,17 @@ export class Person {
   set department(arg: Department) {
     this._department = arg;
   }
+
+  get manager() {
+    return this._department.manager;
+  }
+
+  set manager(arg: string) {
+    this._department.manager = arg;
+  }
 }
 
 /**
- * 리펙토링 전 코드
+ * 리펙토링 후 코드
  */
-let manager = new Person('매니저').department.manager;
+let manager = new Person('매니저').manager;
