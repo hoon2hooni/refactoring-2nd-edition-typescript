@@ -1,20 +1,29 @@
-import { TrackingInformation } from './TrackingInformation';
 export class Shipment {
+  _shippingCompany = '';
+  _trackingNumber = 0;
   /**
    *
    * 더 많은 메서드
    */
-  _trackingInformation = new TrackingInformation();
-  get trackingInfo() {
-    return this.trackingInformation.display;
+
+  get shippingCompany() {
+    return this._shippingCompany;
   }
 
-  get trackingInformation() {
-    return this._trackingInformation;
+  set shippingCompany(arg) {
+    this._shippingCompany = arg;
   }
 
-  set trackingInformation(aTrackingInformation) {
-    this._trackingInformation = aTrackingInformation;
+  get trackingNumber() {
+    return this._trackingNumber;
+  }
+
+  set trackingNumber(arg) {
+    this._trackingNumber = arg;
+  }
+
+  get display() {
+    return `${this.shippingCompany}: ${this.trackingNumber}`;
   }
 }
 
@@ -26,4 +35,4 @@ declare const request: {
 };
 const aShipment = new Shipment();
 
-aShipment.trackingInformation.shippingCompany = request.vendor;
+aShipment.shippingCompany = request.vendor;
