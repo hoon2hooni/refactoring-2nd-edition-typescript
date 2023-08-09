@@ -1,7 +1,7 @@
 /**
  * 리팩토링 전
  */
-function foundPerson(people) {
+function foundPerson(people: string[]) {
   for (let i = 0; i < people.length; i++) {
     if (people[i] === 'Don') {
       return 'Don';
@@ -15,13 +15,4 @@ function foundPerson(people) {
   }
 
   return '';
-}
-
-/**
- * 리팩토링 후
- */
-function foundPerson(people) {
-  const candidates = ['Don', 'John', 'Kent'];
-
-  return people.find((p) => candidates.includes(p) || '');
 }
