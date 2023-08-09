@@ -26,14 +26,14 @@
 
 
 ## chapter 07 캡슐화
-1.[레코드 캡슐화하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/e582099)
-2.[컬렉션 캡슐화 하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/a5bcfec)
-3.[기본형을 객체로 바꾸기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/29754ed)
-4.[임시변수를 질의 함수로](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/3be65e6)
-5.[클래스 추출](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/bfec199)
-6.[클래스 인라인](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/e8b2fe7)
-7.[위임 숨기미](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/4012127)
-8.[중재자 제거하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/c12cabb)
+1. [레코드 캡슐화하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/e582099)
+2. [컬렉션 캡슐화 하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/a5bcfec)
+3. [기본형을 객체로 바꾸기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/29754ed)
+4. [임시변수를 질의 함수로](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/3be65e6)
+5. [클래스 추출](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/bfec199)
+6. [클래스 인라인](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/e8b2fe7)
+7. [위임 숨기미](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/4012127)
+8. [중재자 제거하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/c12cabb)
 9. [알고리즘 교체하기](https://github.com/hoon2hooni/refactoring-2nd-edition-typescript/commit/8bd4e90)
 
 ## chapter 08 기능 이동
