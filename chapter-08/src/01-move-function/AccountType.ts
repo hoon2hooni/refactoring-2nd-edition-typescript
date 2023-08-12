@@ -1,5 +1,11 @@
-class AccountType {
-  overdraftCharge(daysOverdrawn) {
+export class AccountType {
+  isPremium: boolean;
+
+  constructor(isPremium: boolean) {
+    this.isPremium = isPremium;
+  }
+
+  overdraftCharge(daysOverdrawn: number): number {
     if (this.isPremium) {
       const baseCharge = 10;
 

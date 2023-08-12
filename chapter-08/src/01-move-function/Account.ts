@@ -1,4 +1,12 @@
-class Account {
+export class Account {
+  private daysOverdrawn: number;
+  private type: { isPremium: boolean };
+
+  constructor(daysOverdrawn: number, type: { isPremium: boolean }) {
+    this.daysOverdrawn = daysOverdrawn;
+    this.type = type;
+  }
+
   // 은행 이자 계산
   get bankCharge() {
     let result = 4.5;
