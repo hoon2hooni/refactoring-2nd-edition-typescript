@@ -1,16 +1,13 @@
 class Account {
-  private _interestRate: number;
-
   constructor(
     private _number: number,
-    private _type: string,
-    interestRate: number,
+    private _type: AccountType,
   ) {
-    this._interestRate = interestRate;
+    this._type = _type;
   }
 
   get interestRate() {
-    return this._interestRate;
+    return this._type.interestRate;
   }
 
   get number() {
@@ -19,5 +16,15 @@ class Account {
 
   get type() {
     return this._type;
+  }
+}
+
+class AccountType {
+  type: string;
+  interestRate: number;
+
+  constructor(type: string, interestRate: number) {
+    this.type = type;
+    this.interestRate = interestRate;
   }
 }
