@@ -1,8 +1,8 @@
 export class Account {
-  private daysOverdrawn: number;
-  private type: { isPremium: boolean };
+  public daysOverdrawn: number;
+  private type: AccountType;
 
-  constructor(daysOverdrawn: number, type: { isPremium: boolean }) {
+  constructor(daysOverdrawn: number, type: AccountType) {
     this.daysOverdrawn = daysOverdrawn;
     this.type = type;
   }
@@ -12,24 +12,31 @@ export class Account {
     let result = 4.5;
 
     if (this.daysOverdrawn > 0) {
-      result += this.overdraftCharge;
+      result += this.type.overdraftCharge(this);
     }
 
     return result;
   }
+}
 
-  // 초과 인출 이자 계산
-  get overdraftCharge() {
-    if (this.type.isPremium) {
+export class AccountType {
+  private isPremium: boolean;
+
+  constructor(isPremium: boolean) {
+    this.isPremium = isPremium;
+  }
+
+  overdraftCharge(account: Account) {
+    if (this.isPremium) {
       const baseCharge = 10;
 
-      if (this.daysOverdrawn <= 7) {
+      if (account.daysOverdrawn <= 7) {
         return baseCharge;
       } else {
-        return baseCharge + (this.daysOverdrawn - 7) * 0.85;
+        return baseCharge + (account.daysOverdrawn - 7) * 0.85;
       }
     } else {
-      return this.daysOverdrawn * 1.75;
+      return account.daysOverdrawn * 1.75;
     }
   }
 }
