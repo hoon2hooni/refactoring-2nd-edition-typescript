@@ -1,12 +1,7 @@
 const states = ['MA', 'CT', 'NY', 'NH'] as const;
+
 /**
  *
- * 리팩토링 전
+ * 리팩토링 후
  */
-let appliesToMass = false;
-
-for (const s of states) {
-  if (s === 'MA') {
-    appliesToMass = true;
-  }
-}
+let appliesToMass = states.includes('MA');
