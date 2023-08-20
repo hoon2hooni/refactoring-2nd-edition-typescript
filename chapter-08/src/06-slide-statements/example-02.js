@@ -1,7 +1,6 @@
 /**
  * 예시
  */
-const chargePerUnit = pricingPlan.unit;
 
 const pricingPlan = retrievePricingPlan();
 const order = retrieveOrder();
