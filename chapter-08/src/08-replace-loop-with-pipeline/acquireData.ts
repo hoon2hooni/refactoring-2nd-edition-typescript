@@ -1,4 +1,4 @@
-function acquireData(input) {
+function acquireData(input: string) {
   const lines = input.split('\n');
   let firstLine = true;
   const result = [];
