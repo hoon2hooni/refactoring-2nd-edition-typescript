@@ -1,18 +1,18 @@
 export class Organization {
-  private _name: string;
+  private _title: string;
   private _country: string;
 
-  constructor(data: { name: string; country: string }) {
-    this._name = data.name;
+  constructor(data: { title: string; country: string }) {
+    this._title = data.title;
     this._country = data.country;
   }
 
-  get name() {
-    return this._name;
+  get title() {
+    return this._title;
   }
 
-  set name(aString: string) {
-    this._name = aString;
+  set title(aString: string) {
+    this._title = aString;
   }
 
   get country() {
@@ -25,9 +25,9 @@ export class Organization {
 }
 
 const organization = new Organization({
-  name: '애크미 구스베리',
+  title: '애크미 구스베리',
   country: 'GB',
 });
 
-console.log(organization.name);
+console.log(organization.title);
 console.log(organization.country);
