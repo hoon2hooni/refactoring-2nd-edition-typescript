@@ -1,4 +1,12 @@
-function distanceTravelled(scenario, time) {
+function distanceTraveled(
+  scenario: {
+    primaryForce: number;
+    mass: number;
+    delay: number;
+    secondaryForce: number;
+  },
+  time: number,
+) {
   let result;
   let acc = scenario.primaryForce / scenario.mass; // 가속도 (a) = 힘(F) / 질량(m)
   let primaryTime = Math.min(time, scenario.delay);
