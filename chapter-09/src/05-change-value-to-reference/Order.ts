@@ -1,4 +1,5 @@
 import { Customer } from './Customer';
+import { registerCustomer } from './repositoryObject';
 
 export class Order {
   private _number: number;
@@ -6,7 +7,7 @@ export class Order {
 
   constructor(data: { number: number; customer: number }) {
     this._number = data.number;
-    this._customer = new Customer(data.customer); // 고객 ID
+    this._customer = registerCustomer(data.customer); // 고객 ID
   }
 
   get customer() {
