@@ -4,7 +4,7 @@ export class Person {
   private _telephoneNumber: TelephoneNumber;
 
   constructor() {
-    this._telephoneNumber = new TelephoneNumber();
+    this._telephoneNumber = new TelephoneNumber(1, 1);
   }
 
   get officeAreaCode() {
@@ -12,15 +12,14 @@ export class Person {
   }
 
   set officeAreaCode(arg) {
-    this._telephoneNumber.areaCode = arg;
+    this._telephoneNumber = new TelephoneNumber(arg, this.officeNumber);
   }
 
   get officeNumber() {
     return this._telephoneNumber.number;
   }
 
-
   set officeNumber(arg) {
-    this._telephoneNumber.number = arg;
+    this._telephoneNumber = new TelephoneNumber(this.officeAreaCode, arg);
   }
 }
