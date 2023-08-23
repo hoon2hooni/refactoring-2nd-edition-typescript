@@ -1,4 +1,8 @@
-class Person {
+import { TelephoneNumber } from './TelephoneNumber';
+
+export class Person {
+  private _telephoneNumber: TelephoneNumber;
+
   constructor() {
     this._telephoneNumber = new TelephoneNumber();
   }
@@ -8,14 +12,15 @@ class Person {
   }
 
   set officeAreaCode(arg) {
-    this._telephoneNumber = new TelephoneNumber(arg, this.officeNumber);
+    this._telephoneNumber.areaCode = arg;
   }
 
   get officeNumber() {
     return this._telephoneNumber.number;
   }
 
+
   set officeNumber(arg) {
-    this._telephoneNumber = new TelephoneNumber(this.officeNumber, arg);
+    this._telephoneNumber.number = arg;
   }
 }
