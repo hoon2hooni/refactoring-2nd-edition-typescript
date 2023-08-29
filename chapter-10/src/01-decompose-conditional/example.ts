@@ -1,4 +1,3 @@
-
 const plan = {
   summerStart: new Date('2022-06-01'),
   summerEnd: new Date('2022-09-01'),
@@ -18,8 +17,16 @@ const enhancedDate = (d: Date) => {
 
 const aDate = enhancedDate(new Date());
 
-if (!aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd)) {
-  charge = quantity * plan.summerRate;
+const summer = () =>
+  !aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd);
+
+const summerCharge = () => quantity * plan.summerRate;
+
+const regularCharge = () =>
+  quantity * plan.regularRate + plan.regularServiceCharge;
+
+if (summer()) {
+  charge = summerCharge();
 } else {
-  charge = quantity * plan.regularRate + plan.regularServiceCharge;
+  charge = regularCharge();
 }
