@@ -1,4 +1,9 @@
-function payAmount(employee) {
+export type Employee = {
+  isSeparated: boolean;
+  isRetired: boolean;
+};
+
+function payAmount(employee: Employee) {
   let result;
 
   if (employee.isSeparated) {
