@@ -1,4 +1,8 @@
-function baseCharge(usage) {
+function usd(amount: number): string {
+  return `$${amount.toFixed(2)}`;
+}
+
+function baseCharge(usage: number): string {
   if (usage < 0) {
     return usd(0);
   }
@@ -9,14 +13,14 @@ function baseCharge(usage) {
   return usd(amount);
 }
 
-function bottomBand(usage) {
+function bottomBand(usage: number): number {
   return Math.min(usage, 100);
 }
 
-function middleBand(usage) {
+function middleBand(usage: number): number {
   return usage > 100 ? Math.min(usage, 200) - 100 : 0;
 }
 
-function topBand(usage) {
+function topBand(usage: number): number {
   return usage > 200 ? usage - 200 : 0;
 }
