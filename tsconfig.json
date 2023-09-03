@@ -11,6 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "chapter-10/src/06-introduce-assertion/Customer-01.js"],
   "exclude": ["**/**.md", "**/**.json"]
 }

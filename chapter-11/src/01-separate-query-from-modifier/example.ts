@@ -1,12 +1,18 @@
-function findMiscreant(people) {
+declare function sendAlert(): void;
+
+function alertForMiscreants(people: string[]) {
   for (const p of people) {
     if (p === '조커') {
+      sendAlert();
+
       return '조커';
     }
     if (p === '사루만') {
+      sendAlert();
+
       return '사루만';
     }
   }
 
-  return '';
+  return;
 }

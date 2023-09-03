@@ -31,7 +31,17 @@ function voyageRisk(voyage) {
 }
 
 // 선장의 항해 이력 위험요소
-function captainHistoryRisk(voyage, history) {
+
+function captainHistoryRisk(
+  voyage: {
+    zone: '서인도'|'동인도'|'중국'|'서아프리카'';
+    length: 10;
+  },
+  history: {
+    zone: string;
+    profit: number;
+  }[],
+) {
   let result = 1;
 
   if (history.length < 5) {
@@ -48,7 +58,10 @@ function captainHistoryRisk(voyage, history) {
 }
 
 // 중국을 경유하는가?
-function hasChina(history) {
+function hasChina(history: {
+    zone: string;
+    profit: number;
+  }[]) {
   return history.some((v) => '중국' === v.zone);
 }
 
@@ -85,12 +98,12 @@ function voyageProfitFactor(voyage, history) {
   return result;
 }
 
-const voyage = {
+export const voyage = {
   zone: '서인도',
   length: 10,
 };
 
-const history = [
+export const history = [
   {
     zone: '동인도',
     profit: 5,
