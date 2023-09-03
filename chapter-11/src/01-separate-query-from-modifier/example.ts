@@ -1,18 +1,9 @@
 declare function sendAlert(): void;
 
 function alertForMiscreants(people: string[]) {
-  for (const p of people) {
-    if (p === '조커') {
-      sendAlert();
+  if (findMiscreants(people)) sendAlert();
+}
 
-      return '조커';
-    }
-    if (p === '사루만') {
-      sendAlert();
-
-      return '사루만';
-    }
-  }
-
-  return;
+function findMiscreants(people: string[]) {
+  return people.find((p) => ['조커', '사루만'].includes(p));
 }
