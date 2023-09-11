@@ -3,9 +3,7 @@ declare const thermostat: {
   currentTemperature: number;
 };
 
-declare const thePlan: {
-  targetTemperature: number;
-};
+declare const thePlan: HeatingPlan;
 
 declare function setToHeat(): void;
 declare function setToCool(): void;
@@ -20,20 +18,26 @@ class HeatingPlan {
     this._min = min;
   }
 
-  get targetTemperature() {
-    if (thermostat.selectedTemperature > this._max) {
+  targetTemperature(selectedTemperature: number) {
+    if (selectedTemperature > this._max) {
       return this._max;
-    } else if (thermostat.selectedTemperature < this._min) {
+    } else if (selectedTemperature < this._min) {
       return this._min;
     } else {
-      return thermostat.selectedTemperature;
+      return selectedTemperature;
     }
   }
 }
 
-if (thePlan.targetTemperature > thermostat.currentTemperature) {
+if (
+  thePlan.targetTemperature(thermostat.currentTemperature) >
+  thermostat.selectedTemperature
+) {
   setToHeat();
-} else if (thePlan.targetTemperature < thermostat.currentTemperature) {
+} else if (
+  thePlan.targetTemperature(thermostat.currentTemperature) <
+  thermostat.currentTemperature
+) {
   setToCool();
 } else {
   setOff();
