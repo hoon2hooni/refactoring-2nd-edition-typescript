@@ -12,3 +12,7 @@ function bookConcert(aCustomer: Customer, isPremium: boolean) {
     // 일반 예약용 로직
   }
 }
+
+export function premiumBookConcert(aCustomer:Customer) {
+  
+}

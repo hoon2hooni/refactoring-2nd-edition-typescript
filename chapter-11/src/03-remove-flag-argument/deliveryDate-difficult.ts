@@ -1,8 +1,12 @@
+export type Order = {
+  deliveryState: string;
+  placedOn: {
+    plusDays: (arg0: number) => any;
+  };
+};
+
 export function deliveryDate(
-  anOrder: {
-    deliveryState: string;
-    placedOn: { plusDays: (arg0: number) => any };
-  },
+  anOrder: Order,
   isRush: boolean,
 ) {
   let result;
@@ -31,4 +35,12 @@ export function deliveryDate(
   }
 
   return result;
+}
+
+export function rushDeliveryDate(anOrder: Order) {
+  return deliveryDate(anOrder, true);
+}
+
+export function regularDeliveryDate(anOrder: Order) {
+  return deliveryDate(anOrder, false);
 }
