@@ -1,9 +1,15 @@
-export class HeatingPlan {
-  constructor(private _temperatureRange: { low: number; high: number }) {}
+type TemperatureRange = {
+  low: number;
+  high: number;
+};
 
-  withinRange(bottom: number, top: number) {
+export class HeatingPlan {
+  constructor(private _temperatureRange: TemperatureRange) {}
+
+  withinRange(aNumberRange: TemperatureRange) {
     return (
-      bottom >= this._temperatureRange.low && top <= this._temperatureRange.high
+      aNumberRange.low >= this._temperatureRange.low &&
+      aNumberRange.high <= this._temperatureRange.high
     );
   }
 }
