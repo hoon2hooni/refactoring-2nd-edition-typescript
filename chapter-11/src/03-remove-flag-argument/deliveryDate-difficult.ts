@@ -1,4 +1,10 @@
-function deliveryDate(anOrder, isRush) {
+export function deliveryDate(
+  anOrder: {
+    deliveryState: string;
+    placedOn: { plusDays: (arg0: number) => any };
+  },
+  isRush: boolean,
+) {
   let result;
   let deliveryTime;
 
