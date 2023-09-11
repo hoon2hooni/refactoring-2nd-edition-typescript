@@ -10,11 +10,11 @@ class Order {
       discountLevel = 1;
     }
 
-    return this.discountLevel(basePrice, discountLevel);
+    return this.discountedPrice(basePrice, discountLevel);
   }
 
-  discountedPrice(basePrice) {
-    switch (this.discountLevel) {
+  discountedPrice(basePrice: number, discountLevel: number) {
+    switch (discountLevel) {
       case 1:
         return basePrice * 0.95;
       case 2:
