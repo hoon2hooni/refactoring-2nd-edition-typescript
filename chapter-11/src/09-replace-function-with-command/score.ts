@@ -1,4 +1,12 @@
-function score(candidate, medicalExam, scoringGuide) {
+type OriginalState = {
+  originState: string;
+};
+
+function score(
+  candidate: OriginalState,
+  medicalExam: { isSmoker: boolean },
+  scoringGuide: { stateWithLowCertification: (state: string) => boolean },
+) {
   let result = 0;
   let healthLevel = 0;
   let highMedicalRiskFlag = false;
