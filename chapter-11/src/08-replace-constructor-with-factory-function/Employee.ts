@@ -25,4 +25,14 @@ export class Employee {
   }
 }
 
-const candidate = new Employee('hooni', 'E');
+//1단계
+function createEmployee(name: string, typeCode: TypeCode) {
+  return new Employee(name, typeCode);
+}
+
+//2단계
+function createEngineer(name: string) {
+  return new Employee(name, 'E');
+}
+
+const candidate = createEngineer('hooni');
