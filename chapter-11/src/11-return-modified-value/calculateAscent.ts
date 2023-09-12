@@ -6,19 +6,17 @@ declare const points: Point[];
 declare function calculateTime(): number;
 declare function calculateDistance(): number;
 
-let totalAscent = 0;
-let totalTime = 0;
-let totalDistance = 0;
-calculateAscent();
-calculateDistance();
+const totalAscent = calculateAscent();
+const totalTime = calculateTime();
+const totalDistance = calculateDistance();
 
 const pace = totalTime / 60 / totalDistance;
 
 function calculateAscent() {
-    for (let i = 1; i < points.length; i++) {
+  let result = 0;
+  for (let i = 1; i < points.length; i++) {
     const verticalChange = points[i].elevation - points[i - 1].elevation;
-    
-    totalAscent += verticalChange > 0 ? verticalChange : 0;
+    result += verticalChange > 0 ? verticalChange : 0;
   }
-  return totalAscent;
+  return result;
 }
