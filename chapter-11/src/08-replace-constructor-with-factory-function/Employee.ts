@@ -1,5 +1,9 @@
-class Employee {
-  constructor(name, typeCode) {
+type TypeCode = 'E' | 'M' | 'S';
+export class Employee {
+  private _name: string;
+  private _typeCode: TypeCode;
+
+  constructor(name: string, typeCode: TypeCode) {
     this._name = name;
     this._typeCode = typeCode;
   }
@@ -20,3 +24,5 @@ class Employee {
     };
   }
 }
+
+const candidate = new Employee('hooni', 'E');
