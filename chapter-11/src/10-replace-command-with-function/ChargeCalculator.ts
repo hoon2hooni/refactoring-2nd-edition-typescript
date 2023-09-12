@@ -1,24 +1,11 @@
-export class ChargeCalculator {
-  private _customer: { baseRate: number };
-  private _usage: number;
-  private _provider: { connectionCharge: number };
+type Customer = {
+  baseRate: number;
+};
+type Provider = {
+  connectionCharge: number;
+};
 
-  constructor(
-    customer: { baseRate: number },
-    usage: number,
-    provider: { connectionCharge: number },
-  ) {
-    this._customer = customer;
-    this._usage = usage;
-    this._provider = provider;
-  }
-
-  get baseCharge() {
-    return this._customer.baseRate * this._usage;
-  }
-
-  get charge() {
-    return this.baseCharge * this._provider.connectionCharge;
-  }
+export function charge(customer: Customer, usage: number, provider: Provider) {
+  const baseCharge = customer.baseRate * usage;
+  return baseCharge + provider.connectionCharge;
 }
-
