@@ -2,29 +2,62 @@ type OriginalState = {
   originState: string;
 };
 
+type MedicalExam = {
+  isSmoker: boolean;
+};
+
+type ScoringGuide = {
+  stateWithLowCertification: (state: string) => boolean;
+};
+
 function score(
   candidate: OriginalState,
-  medicalExam: { isSmoker: boolean },
-  scoringGuide: { stateWithLowCertification: (state: string) => boolean },
+  medicalExam: MedicalExam,
+  scoringGuide: ScoringGuide,
 ) {
-  let result = 0;
-  let healthLevel = 0;
-  let highMedicalRiskFlag = false;
+  return new Scorer(candidate, medicalExam, scoringGuide).execute();
+}
 
-  if (medicalExam.isSmoker) {
-    healthLevel += 10;
-    highMedicalRiskFlag = true;
+class Scorer {
+  private _candidate: OriginalState;
+  private _medicalExam: MedicalExam;
+  private _scoringGuide: ScoringGuide;
+  private _result = 0;
+  private _healthLevel = 0;
+  private _highMedicalRiskFlag = false;
+  constructor(
+    candidate: OriginalState,
+    medicalExam: MedicalExam,
+    scoringGuide: ScoringGuide,
+  ) {
+    this._candidate = candidate;
+    this._medicalExam = medicalExam;
+    this._scoringGuide = scoringGuide;
+  }
+  execute() {
+    this._result = 0;
+    this._healthLevel = 0;
+    this._highMedicalRiskFlag = false;
+    this.scoreSmoking();
+    let certificationGrade = 'regular';
+
+    if (
+      this._scoringGuide.stateWithLowCertification(this._candidate.originState)
+    ) {
+      certificationGrade = 'low';
+      this._result -= 5;
+    }
+
+    // 비슷한 코드가 한참 이어짐
+    this._result -= Math.max(this._healthLevel - 5, 0);
+
+    return result;
   }
 
-  let certificationGrade = 'regular';
-
-  if (scoringGuide.stateWithLowCertification(candidate.originState)) {
-    certificationGrade = 'low';
-    result -= 5;
+  scoreSmoking() {
+    if (this._medicalExam.isSmoker) {
+      this._healthLevel += 10;
+      this._highMedicalRiskFlag = true;
+    }
   }
-
-  // 비슷한 코드가 한참 이어짐
-  result -= Math.max(healthLevel - 5, 0);
-
-  return result;
 }
