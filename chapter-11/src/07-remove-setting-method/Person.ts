@@ -1,13 +1,12 @@
 export class Person {
-  private _name: string;
   private _id: number;
+  private _name: string | undefined;
 
-  constructor(name: string, id: number) {
-    this._name = name;
+  constructor(id: number) {
     this._id = id;
   }
 
-  get name() {
+  get name(): string | undefined {
     return this._name;
   }
 
@@ -18,8 +17,7 @@ export class Person {
   get id() {
     return this._id;
   }
-
-  set id(arg: number) {
-    this._id = arg;
-  }
 }
+
+const martin = new Person(123);
+martin.name = '마틴';
