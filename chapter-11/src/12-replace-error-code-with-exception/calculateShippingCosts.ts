@@ -21,32 +21,44 @@ declare const errorList: {
   errorCode: number;
 }[];
 
-const status = calculateShippingCosts(orderData);
+class OrderProcessingError extends Error {
+  code: number;
+  constructor(errorCode: number) {
+    super(`주문 처리 오류 ${errorCode}`);
+    this.code = errorCode;
+  }
 
-if (status < 0) {
-  errorList.push({
-    order: orderData,
-    errorCode: status,
-  });
+  get name() {
+    return 'OrderProcessingError';
+  }
 }
 
-function localShippingRules(country: string):ShippingRules | number {
+try {
+  calculateShippingCosts(orderData);
+} catch (e: unknown) {
+  if (e instanceof OrderProcessingError) {
+    errorList.push({
+      order: orderData,
+      errorCode: e.code,
+    });
+  } else {
+    throw e;
+  }
+}
+
+function localShippingRules(country: string): ShippingRules | number {
   const data = countryData.shippingRules[country];
 
   if (data) {
     return new ShippingRules(data);
   } else {
-    return -23;
+    throw new OrderProcessingError(-23);
   }
 }
 
 function calculateShippingCosts(anOrder: Order) {
   // 관련 없는 코드
   const shippingRules = localShippingRules(anOrder.country);
-
-  if (typeof shippingRules === 'number' && shippingRules < 0) {
-    return shippingRules;
-  }
 
   return 1;
   // 더 관련 없는 코드
