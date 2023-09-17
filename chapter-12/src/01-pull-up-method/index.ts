@@ -5,16 +5,6 @@ class Party {
   }
 }
 
-class Employee {
-  monthlyCost = 3000;
-  get annualCost() {
-    return this.monthlyCost * 12;
-  }
-}
+export class Employee extends Party {}
 
-class Department {
-  monthlyCost = 3000;
-  get totalAnnualCose() {
-    return this.monthlyCost * 12;
-  }
-}
+export class Department extends Party {}
