@@ -1,5 +1,6 @@
-class Person {
-  constructor(name) {
+export class Person {
+  private _name: string;
+  constructor(name: string) {
     this._name = name;
   }
 
@@ -25,5 +26,7 @@ class Female extends Person {
     return 'F';
   }
 }
+
+const people = [new Male('John'), new Female('Jane')];
 
 const numberOfMales = people.filter((p) => p instanceof Male).length;
