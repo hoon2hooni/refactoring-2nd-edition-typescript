@@ -1,7 +1,9 @@
 export class Person {
   private _name: string;
-  constructor(name: string) {
+  private _genderCode: string;
+  constructor(name: string, genderCode: string) {
     this._name = name;
+    this._genderCode = genderCode;
   }
 
   get name() {
@@ -9,9 +11,12 @@ export class Person {
   }
 
   get genderCode() {
-    return 'X';
+    return this._genderCode;
   }
 
+  get isMale(): boolean {
+    return this.genderCode === 'M';
+  }
   // 생략
 }
 
@@ -27,6 +32,26 @@ class Female extends Person {
   }
 }
 
-const people = [new Male('John'), new Female('Jane')];
+const people = [new Person('John', 'M'), new Person('Jane', 'F')];
+const numberOfMales = people.filter((p) => p.isMale).length;
 
-const numberOfMales = people.filter((p) => p instanceof Male).length;
+//client
+type Record = {
+  gender: string;
+  name: string;
+};
+
+function loadFromInput(data: Record[]) {
+  return data.map(createPerson);
+}
+
+export function createPerson(aRecord: Record) {
+  switch (aRecord.gender) {
+    case 'M':
+      return new Person(aRecord.name, 'M');
+    case 'F':
+      return new Person(aRecord.name, 'F');
+    default:
+      return new Person(aRecord.name, 'X');
+  }
+}
