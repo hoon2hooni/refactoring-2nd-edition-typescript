@@ -1,27 +1,32 @@
-export class Employee {
-  private _id: string;
+class Party {
   private _name: string;
   private _monthlyCost: number;
-  constructor(name: string, id: string, monthlyCost: number) {
-    this._id = id;
+  constructor(name: string, monthlyCost: number) {
     this._name = name;
     this._monthlyCost = monthlyCost;
+  }
+  get name() {
+    return this._name;
   }
 
   get monthlyCost() {
     return this._monthlyCost;
   }
 
-  get name() {
-    return this._name;
+  get annualCost() {
+    return this.monthlyCost * 12;
+  }
+}
+
+export class Employee extends Party {
+  private _id: string;
+  constructor(name: string, id: string, monthlyCost: number) {
+    super(name, monthlyCost);
+    this._id = id;
   }
 
   get id() {
     return this._id;
-  }
-
-  get annualCost() {
-    return this.monthlyCost * 12;
   }
 }
 
@@ -30,36 +35,22 @@ type Staff = {
   monthlyCost: number;
 };
 
-class Department {
-  private _name: string;
+class Department extends Party {
   private _staff: Staff[];
   constructor(name: string, staff: Staff[]) {
-    this._name = name;
+    super(
+      name,
+      staff.reduce((sum, e) => sum + e.monthlyCost, 0),
+    );
     this._staff = staff;
   }
 
   get staff() {
     return this._staff.slice();
   }
-  get name() {
-    return this._name;
-  }
-
-  get totalMonthlyCost() {
-    return this.staff
-      .map((e) => e.monthlyCost)
-      .reduce((sum, cost) => sum + cost);
-  }
 
   get headCount() {
     return this.staff.length;
   }
-
-  get totalAnnualCost() {
-    return this.totalMonthlyCost * 12;
-  }
 }
 ///////////////////////////////////
-class Party {
-  constructor() {}
-}
