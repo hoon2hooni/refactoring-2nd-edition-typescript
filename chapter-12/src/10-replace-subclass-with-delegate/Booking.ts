@@ -2,10 +2,28 @@
  * 예시: 서브 클래스가 하나일때
  */
 
+type Show = {
+  name: string;
+  price: number;
+  talkback: boolean;
+};
+
+type Extras = {
+  PremiumFee: number;
+  dinner: boolean;
+};
+
 class Booking {
-  constructor(show, date) {
+  protected _show: Show;
+  private _date: Date;
+
+  constructor(show: Show, date: Date) {
     this._show = show;
     this._date = date;
+  }
+
+  get isPeakDay() {
+    return this._date.getDay() === 1 || this._date.getDay() === 2;
   }
 
   get hasTalkback() {
@@ -24,7 +42,9 @@ class Booking {
 }
 
 class PremiumBooking extends Booking {
-  constructor(show, date, extras) {
+  private _extras: Extras;
+
+  constructor(show: Show, date: Date, extras: Extras) {
     super(show, date);
 
     this._extras = extras;
@@ -42,6 +62,3 @@ class PremiumBooking extends Booking {
     return this._extras.hasOwnProperty('dinner') && !this.isPeakDay;
   }
 }
-
-const aBooking = new Booking(show, date);
-const aPremiumBooking = new PremiumBooking(show, date, extras);

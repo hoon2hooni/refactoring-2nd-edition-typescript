@@ -2,7 +2,9 @@
  * 예시: 서브클래스가 여러 개일 때
  */
 
-function createBird(bird) {
+function createBird(
+  bird: EuropeanBird | AfricanSwallowData | NorwegianBlueParrotData,
+) {
   switch (bird.type) {
     case '유럽 제비':
       return new EuropeanSwallow(bird);
@@ -15,8 +17,30 @@ function createBird(bird) {
   }
 }
 
-class Bird {
-  constructor(data) {
+type Data = {
+  name: string;
+  plumage: string;
+};
+
+type EuropeanBird = Data & {
+  type: '유럽 제비';
+};
+
+type AfricanSwallowData = Data & {
+  type: '아프리카 제비';
+  numberOfCoconuts: number;
+};
+
+type NorwegianBlueParrotData = Data & {
+  type: '노르웨이 파랑 앵무';
+  voltage: number;
+  isNailed: boolean;
+};
+
+export class Bird {
+  private _name: string;
+  protected _plumage: string;
+  constructor(data: Data) {
     this._name = data.name;
     this._plumage = data.plumage;
   }
@@ -28,10 +52,6 @@ class Bird {
   get plumage() {
     return this._plumage || '보통이다';
   }
-
-  get airSpeedVelocity() {
-    return null;
-  }
 }
 
 class EuropeanSwallow extends Bird {
@@ -41,7 +61,8 @@ class EuropeanSwallow extends Bird {
 }
 
 class AfricanSwallow extends Bird {
-  constructor(data) {
+  private _numberOfCoconuts: number;
+  constructor(data: AfricanSwallowData) {
     super(data);
 
     this._numberOfCoconuts = data.numberOfCoconuts;
@@ -53,7 +74,10 @@ class AfricanSwallow extends Bird {
 }
 
 class NorwegianBlueParrot extends Bird {
-  constructor(data) {
+  private _voltage: number;
+  private _isNailed: boolean;
+
+  constructor(data: NorwegianBlueParrotData) {
     super(data);
 
     this._voltage = data.voltage;
