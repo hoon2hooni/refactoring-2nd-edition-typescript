@@ -24,22 +24,25 @@ export class CatalogItem {
   }
 }
 
-export class Scroll extends CatalogItem {
-  private _lastCleaned: LocalDate;
+interface Catalog {
+  get(id: string): CatalogItem;
+}
 
+export class Scroll {
+  private _lastCleaned: LocalDate;
+  private _catalogItem: CatalogItem;
   constructor(
     id: number,
-    title: string,
-    tags: string[],
     dateLastCleaned: LocalDate,
+    catalog: Catalog,
+    catalogId: string,
   ) {
-    super(id, title, tags);
+    this._catalogItem = catalog.get(catalogId);
     this._lastCleaned = dateLastCleaned;
   }
 
   needsCleaning(targetDate: LocalDate): boolean {
-    const threshold = this.hasTag('revered') ? 700 : 1500;
-
+    const threshold = this._catalogItem.hasTag('revered') ? 700 : 1500;
     return this.daysSinceLastCleaning(targetDate) > threshold;
   }
 
